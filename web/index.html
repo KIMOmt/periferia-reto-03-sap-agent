@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Agente Órdenes de Compra SAP · Periferia IT Group</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <div class="app-container">
+    <!-- Barra Superior -->
+    <header class="app-header">
+      <div class="brand">
+        <div class="logo-icon">🏢</div>
+        <div>
+          <h1>Agente SAP · Órdenes de Compra</h1>
+          <p class="subtitle">Equipo Perxia 2.0 · Periferia IT Group</p>
+        </div>
+      </div>
+      <div class="header-status">
+        <span class="status-indicator"></span>
+        <span id="system-status">SAP Simulado Conectado</span>
+      </div>
+    </header>
+
+    <!-- Contenido Principal -->
+    <main class="main-layout">
+      <!-- Panel de Chat -->
+      <section class="chat-section">
+        <div class="chat-messages" id="chat-messages">
+          <!-- Mensaje inicial de bienvenida -->
+          <div class="message assistant-message">
+            <div class="message-sender">🤖 Agente SAP</div>
+            <div class="message-content">
+              Hola, soy el asistente para la gestión de órdenes de compra en SAP.
+              Puedo procesar cualquier solicitud de compra (<code>sol-001</code> a <code>sol-006</code>), validar los documentos contra maestros, generar la evidencia y registrar la OC.
+              <br><br>
+              <strong>¿Qué solicitud deseas que procese hoy?</strong>
+            </div>
+          </div>
+        </div>
+
+        <!-- Alerta de Confirmación Humana -->
+        <div class="confirmation-banner hidden" id="confirmation-banner">
+          <div class="confirmation-icon">⚠️</div>
+          <div class="confirmation-info">
+            <strong>Confirmación Humana Requerida</strong>
+            <p id="confirmation-text">El agente detectó excepciones que requieren tu autorización explícita antes de crear la orden.</p>
+          </div>
+          <div class="confirmation-actions">
+            <button class="btn btn-confirm" id="btn-confirmar">✓ Confirmar y Crear OC</button>
+            <button class="btn btn-reject" id="btn-rechazar">✕ Cancelar</button>
+          </div>
+        </div>
+
+        <!-- Indicador de "Pensando" -->
+        <div class="typing-indicator hidden" id="typing-indicator">
+          <span></span><span></span><span></span>
+          <span class="typing-text">Agente analizando documentos...</span>
+        </div>
+
+        <!-- Formulario de Entrada -->
+        <form class="chat-input-bar" id="chat-form">
+          <input
+            type="text"
+            id="chat-input"
+            placeholder="Ej: 'Procesa la solicitud sol-001' o 'Verifica el caso sol-004'..."
+            autocomplete="off"
+            required
+          />
+          <button type="submit" class="btn btn-primary" id="btn-send">
+            <span>Enviar</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="22" y1="2" x2="11" y2="13"></line>
+              <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+            </svg>
+          </button>
+        </form>
+      </section>
+
+      <!-- Panel Lateral de Acciones Rápidas y Auditoría -->
+      <aside class="sidebar">
+        <div class="sidebar-card">
+          <h3>⚡ Casos de Prueba Fixtures</h3>
+          <p class="sidebar-help">Haz clic para enviar la prueba directamente:</p>
+          <div class="quick-cases">
+            <button class="btn-case" data-caso="sol-001">
+              <strong>sol-001</strong>
+              <span>Flujo feliz estándar (TecnoSuministros)</span>
+            </button>
+            <button class="btn-case" data-caso="sol-002">
+              <strong>sol-002</strong>
+              <span>Bloqueo: Proveedor inexistente</span>
+            </button>
+            <button class="btn-case" data-caso="sol-003">
+              <strong>sol-003</strong>
+              <span>Bloqueo: Aprobador no autorizado</span>
+            </button>
+            <button class="btn-case" data-caso="sol-004">
+              <strong>sol-004</strong>
+              <span>Confirmación: Desvío cotización 6%</span>
+            </button>
+            <button class="btn-case" data-caso="sol-005">
+              <strong>sol-005</strong>
+              <span>Confirmación: Factura retroactiva</span>
+            </button>
+            <button class="btn-case" data-caso="sol-006">
+              <strong>sol-006</strong>
+              <span>Confirmación: Derivación de IVA</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="sidebar-card">
+          <h3>📋 Registro en Tiempo Real</h3>
+          <div class="stats-item">
+            <span>ID de Sesión:</span>
+            <code id="session-id-display">cargando...</code>
+          </div>
+          <div class="stats-item">
+            <span>Herramientas llamadas:</span>
+            <strong id="tools-count-display">0</strong>
+          </div>
+        </div>
+      </aside>
+    </main>
+  </div>
+
+  <script src="/app.js"></script>
+</body>
+</html>
+

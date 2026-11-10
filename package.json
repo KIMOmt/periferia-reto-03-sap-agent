@@ -1,0 +1,26 @@
+{
+  "name": "reto-03-agente-ordenes-compra-sap",
+  "version": "1.0.0",
+  "description": "Agente conversacional independiente para preparación y creación de órdenes de compra en SAP",
+  "type": "module",
+  "scripts": {
+    "dev": "tsx src/server.ts",
+    "start": "node --import tsx src/server.ts",
+    "demo": "tsx demo.ts",
+    "bun:dev": "bun run src/server.ts",
+    "bun:demo": "bun run demo.ts",
+    "typecheck": "tsc --noEmit",
+    "build": "tsc"
+  },
+  "dependencies": {
+    "@google/genai": "^3.0.0",
+    "dotenv": "^16.4.7",
+    "pdf-lib": "^1.17.1",
+    "zod": "^3.24.2"
+  },
+  "devDependencies": {
+    "@types/node": "^22.13.8",
+    "tsx": "^4.19.3",
+    "typescript": "^5.7.3"
+  }
+}
